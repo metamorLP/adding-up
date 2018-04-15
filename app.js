@@ -1,10 +1,14 @@
 'use strict';
+// requireでファイル読み込みする。
+// 読み込むfsやreadlineは、Node.jsに入っているライブラリ。
 const fs = require('fs');
 const readline = require('readline');
 const rs = fs.ReadStream('./popu-pref.csv');
 const rl = readline.createInterface({'input':rs, 'output':{}});
 const map = new Map(); // Mapは連想配列。key: 都道府県 value: 集計データのオブジェクト
 
+
+// rl オブジェクトで line というイベントが発生したらこの無名関数を呼んでください、という意味
 rl.on('line', (lineString) => {
     const columns = lineString.split(',');
     const year = parseInt(columns[0]);
